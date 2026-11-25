@@ -1,0 +1,151 @@
+/* ==========================================================================
+   AUREN motion system — "light moving through a room"
+   One easing language, a small duration scale, and five signature effects:
+   curtain image reveals · masked heading settle · light sweep ·
+   daylight shift on scroll (js/motion.js) · liquid button wipe.
+   Tweak the variables below to change speed / intensity site-wide.
+   ========================================================================== */
+
+:root {
+  --ease-sig: cubic-bezier(0.76, 0, 0.24, 1);     /* masks, wipes, transitions */
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);   /* entrances that come to rest */
+  --t-m: 0.9s;
+  --t-l: 1.5s;
+  --curtain-scale: 1.22;                          /* how far images start zoomed in */
+  --sweep-opacity: 0.32;                          /* strength of the light sweep */
+}
+
+/* Daylight overlay (element + colour come from js/motion.js) */
+.daylight {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: rgba(196, 210, 222, 0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* ---- 1. Everything that reveals now settles on the signature curve ---- */
+  html.rvon .rv {
+    translate: 0 28px;
+    transition: opacity var(--t-m) var(--ease-settle), translate var(--t-l) var(--ease-settle);
+    transition-delay: var(--d, 0ms);
+  }
+
+  /* ---- 2. Curtain image reveals: a mask opens while the photo settles ---- */
+  html.rvon :is(.about .img, .proc .im, .cat, .prod .pm).rv {
+    opacity: 1;
+    translate: none;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path var(--t-l) var(--ease-sig);
+    transition-delay: var(--d, 0ms);
+  }
+
+  html.rvon :is(.about .img, .proc .im, .cat, .prod .pm).rv.in { clip-path: inset(0); }
+
+  html.rvon :is(.about .img, .proc .im, .cat, .prod .pm).rv img {
+    scale: var(--curtain-scale);
+    transition: scale 2s var(--ease-settle);
+    transition-delay: var(--d, 0ms);
+  }
+
+  html.rvon :is(.about .img, .proc .im, .cat, .prod .pm).rv.in img { scale: 1; }
+
+  /* ---- 3. Headings: masked baseline + letter-spacing settle ---- */
+  html.rvon :is(section h2, .cta h2).rv {
+    opacity: 1;
+    translate: 0 0.35em;
+    letter-spacing: 0.05em;
+    clip-path: inset(0 0 100% 0);
+    transition:
+      clip-path var(--t-l) var(--ease-sig),
+      translate var(--t-l) var(--ease-settle),
+      letter-spacing 1.8s var(--ease-settle);
+    transition-delay: var(--d, 0ms);
+  }
+
+  html.rvon :is(section h2, .cta h2).rv.in {
+    translate: 0 0;
+    letter-spacing: normal;
+    clip-path: inset(-10% -2% -25% -2%);
+  }
+
+  /* ---- 4. Light sweep: warm band of sunlight crosses hero + process photos ---- */
+  .hero::after,
+  .proc .im::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    bottom: -10%;
+    left: -55%;
+    z-index: 2;
+    width: 38%;
+    background: linear-gradient(100deg, transparent, rgba(255, 226, 170, var(--sweep-opacity)), transparent);
+    transform: skewX(-18deg);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .proc .im { position: relative; overflow: hidden; }
+
+  .hero::after { animation: auren-sweep 3.2s var(--ease-sig) 1.4s 1 both; }
+  .proc .im.rv.in::after { animation: auren-sweep 2.2s var(--ease-sig) 0.7s 1 both; }
+
+  @keyframes auren-sweep {
+    0%   { left: -55%; opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { left: 125%; opacity: 0; }
+  }
+
+  /* ---- 5. Liquid button wipe: fills from the side the cursor entered ---- */
+  .btn::before {
+    transform: none;
+    clip-path: circle(0% at var(--bx, 50%) var(--by, 100%));
+    transition: clip-path 0.75s var(--ease-sig);
+  }
+
+  .btn:hover::before {
+    transform: none;
+    clip-path: circle(150% at var(--bx, 50%) var(--by, 100%));
+  }
+}
+
+/* Phones: keep it light — no daylight overlay, no hero sweep */
+@media (max-width: 760px) {
+  .daylight,
+  .hero::after { display: none; }
+  :root { --curtain-scale: 1.12; --t-l: 1.2s; }
+}
+
+/* ==========================================================================
+   Cursor lens (hero) — js/lens.js
+   A second, un-tinted and sun-lit copy of the hero photo is revealed through
+   a soft circular mask that follows the cursor with inertia. The mask radius
+   is driven by --lr; its centre by --lx / --ly.
+   ========================================================================== */
+.hero > .lens {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--hero) 46% 70% / auto 118% no-repeat;
+  filter: saturate(1.28) contrast(1.05) brightness(1.1) sepia(0.12);
+  -webkit-mask-image: radial-gradient(circle at var(--lx, 50%) var(--ly, 50%), #000 0, #000 calc(var(--lr, 0px) * 0.5), rgba(0, 0, 0, 0.55) calc(var(--lr, 0px) * 0.78), transparent var(--lr, 0px));
+  mask-image: radial-gradient(circle at var(--lx, 50%) var(--ly, 50%), #000 0, #000 calc(var(--lr, 0px) * 0.5), rgba(0, 0, 0, 0.55) calc(var(--lr, 0px) * 0.78), transparent var(--lr, 0px));
+}
+
+/* The custom ring cursor softens while the lens is active */
+html.lens-on .cur2 { border-color: rgba(255, 244, 214, 0.9); }
+
+@media (max-width: 760px), (hover: none) {
+  .hero > .lens { display: none; }
+}
+
+/* Phones: the hero heading rises in with pure CSS, so it never waits for
+   JavaScript or the animation libraries to download. (`backwards` = no
+   lasting effect, so the scroll-fade in scroll-effects.js stays in control.) */
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .hero h1 { animation: auren-h1-in 0.8s var(--ease-settle) backwards; }
+  @keyframes auren-h1-in { from { opacity: 0; translate: 0 22px; } }
+}

@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Design tokens
+   Single source of truth for colours, fonts and images.
+   ========================================================================== */
+
+:root {
+  /* Colour */
+  --olive: #675b3e;
+  --grey: #4d4d4d;
+  --bg: #fff;
+  --ink: #fff;
+  --cream: #f1ebdc;
+  --text-muted: rgba(0, 0, 0, 0.6); /* black at 60% — soft headings and descriptions */
+
+  /* Typography */
+  --mono: 'Intel One Mono', ui-monospace, Menlo, monospace;
+  --sans: 'Inter', system-ui, sans-serif;
+
+  /* Footer heading ("Make room for inspiration…").
+     Lower the number for a lighter look: 300 (light) → 400 (regular). */
+  --footer-heading-weight: 300;
+
+  /* Large background images */
+  --hero: url('../assets/images/hero.jpg');
+  --hero-m: url('../assets/images/hero-m.jpg'); /* lighter copy for phones */
+  --foot: url('../assets/images/footer-bg.jpg');
+}

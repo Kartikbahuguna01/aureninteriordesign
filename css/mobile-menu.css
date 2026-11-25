@@ -1,0 +1,203 @@
+/* ==========================================================================
+   Mobile menu (phones ≤ 760px)
+
+   Markup:   button.burger  →  opens the menu
+             div.menu       →  full-screen panel
+               button.menu-close  →  cross icon that closes the menu
+   JS:       js/menu.js toggles `.open` on the panel and `aria-expanded`
+             on the burger.
+   ========================================================================== */
+
+/* Hidden on desktop */
+.burger,
+.menu,
+.menu-close {
+  display: none;
+}
+
+@media (max-width: 760px) {
+
+  /* ---------- Hamburger button ---------- */
+  .burger {
+    position: relative;
+    display: block;
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .burger span {
+    position: absolute;
+    left: 9px;
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--grey);
+  }
+
+  .burger span:nth-child(1) { top: 15px; }
+  .burger span:nth-child(2) { top: 21px; left: 17px; width: 18px; }
+  .burger span:nth-child(3) { top: 27px; }
+
+  /* While the menu is open its own close button takes over, so the header's
+     button area is hidden. `visibility: hidden` also stops this layer (which
+     sits above the panel) from swallowing taps meant for the close button. */
+  header.mo .hdr-r { visibility: hidden; }
+
+  header.mo .logo { color: var(--cream); }
+
+  /* ---------- Full-screen panel ---------- */
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 118px 28px calc(28px + env(safe-area-inset-bottom));
+    background: radial-gradient(110% 70% at 100% 0, #85774f 0, #675b3e 38%, #26200f 100%);
+    color: #fff;
+    font-family: var(--sans);
+    counter-reset: m;
+
+    /* Closed state: clipped to nothing, then wipes down when opened */
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition: clip-path 0.9s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s 0.9s;
+  }
+
+  .menu.open {
+    clip-path: inset(0);
+    visibility: visible;
+    transition: clip-path 0.9s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s;
+  }
+
+  /* Staggered entrance for everything except the close button */
+  .menu > :not(.menu-close) {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity 0.5s, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .menu.open > :not(.menu-close) {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(0.4s + var(--i, 0) * 0.07s);
+  }
+
+  .menu > :nth-child(2) { --i: 0; }
+  .menu > :nth-child(3) { --i: 1; }
+  .menu > :nth-child(4) { --i: 2; }
+  .menu > :nth-child(5) { --i: 3; }
+  .menu > :nth-child(6) { --i: 4; }
+  .menu > :nth-child(7) { --i: 5; }
+  .menu > :nth-child(8) { --i: 6; }
+  .menu > :nth-child(9) { --i: 7; }
+
+  /* ---------- Close (cross) button ---------- */
+  .menu-close {
+    position: fixed;
+    top: calc(26px + env(safe-area-inset-top, 0px));
+    right: 20px;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid rgba(241, 235, 220, 0.4);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--cream);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.4s 0.5s, background 0.3s, transform 0.4s;
+  }
+
+  .menu.open .menu-close { opacity: 1; }
+
+  .menu-close:hover,
+  .menu-close:focus-visible {
+    background: rgba(241, 235, 220, 0.14);
+    outline-color: var(--cream);
+  }
+
+  .menu-close:active { transform: scale(0.92); }
+
+  .menu-close svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    fill: none;
+  }
+
+  /* ---------- Panel content ---------- */
+  .menu small {
+    display: block;
+    margin-bottom: 10px;
+    color: #d9cfb4;
+    font: 400 12px var(--mono);
+    letter-spacing: 0.3em;
+  }
+
+  .menu a.big {
+    display: flex;
+    align-items: center;
+    padding: 17px 0;
+    border-bottom: 1px solid rgba(241, 235, 220, 0.16);
+    font: 200 clamp(34px, 10.5vw, 46px) / 1 var(--sans);
+    letter-spacing: -0.5px;
+    counter-increment: m;
+  }
+
+  /* 01, 02, 03… index numbers */
+  .menu a.big::before {
+    content: '0' counter(m);
+    align-self: flex-start;
+    width: 38px;
+    margin-top: 8px;
+    color: #cdbf98;
+    font: 400 11px var(--mono);
+    letter-spacing: 0.1em;
+  }
+
+  .menu a.big::after {
+    content: '\2192';
+    margin-left: auto;
+    font-size: 22px;
+    opacity: 0.5;
+    transition: transform 0.4s, opacity 0.4s;
+  }
+
+  .menu a.big:active::after {
+    transform: translateX(6px);
+    opacity: 1;
+  }
+
+  .menu .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 34px 0 0;
+    color: #e6dec8;
+    font-size: 16px;
+  }
+
+  .menu .two a {
+    display: block;
+    padding: 4px 0;
+    margin-bottom: 6px;
+  }
+
+}
+
+/* Lock page scroll while the menu is open */
+html.mo,
+html.mo body {
+  overflow: hidden;
+}

@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Intro splash screen (shown once per browser session)
+   `html.js` is added by js/boot.js only when the intro should play.
+   ========================================================================== */
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(90% 70% at 70% 20%, #7d6f4b, #675b3e 45%, #2a2418);
+  color: var(--cream);
+  clip-path: inset(0);
+}
+
+html.js #intro { display: flex; }
+
+.in-logo {
+  display: flex;
+  overflow: hidden;
+  padding: 0 0.08em;
+  font: 200 clamp(56px, 15vw, 170px) / 1.1 var(--sans);
+  letter-spacing: 0.08em;
+}
+
+.in-logo span { display: inline-block; }
+
+.in-line {
+  width: min(300px, 52vw);
+  height: 1px;
+  margin: 20px 0 18px;
+  background: currentColor;
+  transform-origin: left;
+}
+
+.in-sub {
+  padding: 0 20px;
+  font: 400 clamp(10px, 2.7vw, 13px) var(--mono);
+  letter-spacing: 0.32em;
+  text-align: center;
+  text-transform: uppercase;
+}

@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Base: reset, global elements and shared components (links, buttons)
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--grey);
+  font-family: var(--mono);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+section {
+  padding-top: 0;
+}
+
+/* Page container */
+.wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* Section heading + sub-heading */
+h2 {
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.2;
+  color: var(--olive);
+  margin: 0;
+  text-align: center;
+}
+
+.sub {
+  font-size: 24px;
+  line-height: 38px;
+  text-align: center;
+  margin: 20px auto 0;
+  max-width: 560px;
+  font-weight: 300;
+  color: var(--text-muted); /* black at 60% */
+}
+
+.sub--narrow {
+  max-width: 420px;
+}
+
+/* Underlined text link with arrow */
+.lnk {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  color: var(--olive);
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 6px;
+  font-size: 18px;
+}
+
+.arr {
+  width: 34px;
+  height: 12px;
+  flex: none;
+}
+
+/* Arrow inside section links is smaller than the standalone arrow */
+.lnk svg {
+  width: 26px;
+  height: 9px;
+  flex: none;
+}
+
+.arr--md { width: 26px; }
+.arr--sm { width: 20px; }
+
+/* Solid button */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 18px;
+  border: 0;
+  background: var(--olive);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: scale 0.25s, box-shadow 0.4s;
+}
+
+/* Sliding dark fill on hover */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #2a2418;
+  transform: translateY(101%);
+  transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.btn:hover::before { transform: none; }
+.btn:hover { box-shadow: 0 12px 28px rgba(42, 36, 24, 0.28); }
+.btn:active { scale: 0.96; }
+
+/* Keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--olive);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
