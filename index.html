@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AUREN Studio — Designed Around the Art of Living</title>
+  <meta name="description" content="AUREN Studio creates considered interiors where architecture, material, light and everyday life come together. Delhi, India.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Font stylesheet is added by js/boot.js so it never blocks the first paint -->
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Intel+One+Mono:wght@300;400;500;700&family=Inter:wght@100;200;300;400;500&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Styles (order matters: tokens → base → components → responsive last) -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/mobile-menu.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/intro.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/compact-nav.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/process-scroll.css">
+
+  <!-- Start downloading the hero photo immediately -->
+  <link rel="preload" as="image" href="assets/images/hero.jpg" fetchpriority="high">
+
+  <!-- Runs before first paint: namespace, user preferences, safety timeouts -->
+  <script src="js/boot.js"></script>
+</head>
+
+<body>
+  <!-- Shared SVG icons: arrow (#ar) and star (#st) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="ar" viewBox="0 0 34 12"><path d="M0 6h32M27 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+      <symbol id="st" viewBox="0 0 24 24"><path d="M12 1.8l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.5l-6.3 3.7 1.5-7.1L1.8 9.2 9 8.4z"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Intro splash (first visit only, controlled by js/intro.js) -->
+  <div id="intro" aria-hidden="true">
+    <div class="in-logo">AUREN</div>
+    <div class="in-line"></div>
+    <div class="in-sub">Studio &middot; Designed around the art of living</div>
+  </div>
+
+  <!-- ===================== Header ===================== -->
+  <header id="home">
+    <div class="wrap">
+      <a class="logo" href="#home">AUREN Studio</a>
+
+      <nav aria-label="Primary">
+        <a class="on" href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+      </nav>
+
+      <div class="hdr-r">
+        <!-- Phone: always visible. Desktop: only in the compact scrolled bar. Opens the menu. -->
+        <button class="burger" id="menu-toggle" type="button"
+                aria-label="Open menu" aria-expanded="false" aria-controls="menu-panel">
+          <span></span><span></span><span></span>
+        </button>
+        <a class="btn" href="#contact">Let’s Talk</a>
+      </div>
+
+      <!-- Menu: full-screen on phones, dark card under the compact bar on desktop. The close button must stay the FIRST child. -->
+      <div class="menu" id="menu-panel" aria-hidden="true">
+        <button class="menu-close" id="menu-close" type="button" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
+        </button>
+
+        <small>MENU</small>
+        <a class="big" href="#about">About</a>
+        <a class="big" href="#shop">Collection</a>
+        <a class="big" href="#services">Projects</a>
+        <a class="big" href="#process">Approach</a>
+        <a class="big" href="#contact">Contact</a>
+
+        <div class="two">
+          <div>
+            <a href="#">News</a>
+            <a href="#">Showroom</a>
+            <a href="#">Media</a>
+          </div>
+          <div>
+            <a href="tel:+91752757744">+91 752757744</a>
+            <a href="mailto:hello@aurenstudio.com">hello@aurenstudio.com</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== Hero ===================== -->
+    <div class="hero">
+      <h1>Designed Around<br>the Art of Living.</h1>
+
+      <a class="explore" href="#services">Explore Our Work <svg class="arr"><use href="#ar"/></svg></a>
+
+      <div class="rate">
+        <div class="av">
+          <img src="assets/images/avatar-1.jpg" alt="">
+          <img src="assets/images/avatar-2.jpg" alt="">
+          <img src="assets/images/avatar-3.jpg" alt="">
+          <img src="assets/images/avatar-4.jpg" alt="">
+        </div>
+        <div>
+          <p>4.9 Rated by 140+ Homeowners</p>
+          <div class="stars" aria-label="5 stars">
+            <svg fill="#fff"><use href="#st"/></svg>
+            <svg fill="#fff"><use href="#st"/></svg>
+            <svg fill="#fff"><use href="#st"/></svg>
+            <svg fill="#fff"><use href="#st"/></svg>
+            <svg fill="#fff"><use href="#st"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="hbrand">AUREN Studio</div>
+
+      <div class="hcard">
+        <div class="ph" role="img" aria-label="The Aurelia Residence living room"></div>
+        <h3>The Aurelia Residence, NEW DELHI</h3>
+        <a href="#services">View Interior <svg class="arr arr--md"><use href="#ar"/></svg></a>
+      </div>
+    </div>
+
+    <!-- ===================== Shop by category ===================== -->
+    <section id="shop">
+      <div class="wrap sec-h">
+        <h2>Shop By Category</h2>
+        <p class="sub">Thoughtfully selected pieces to bring the AUREN aesthetic into your space.</p>
+
+        <div class="g4">
+          <a class="cat" href="#shop">
+            <img src="assets/images/category-furniture.jpg" alt="Yellow armchair beside a brass floor lamp">
+            <span>FURNITURE <svg class="arr"><use href="#ar"/></svg></span>
+          </a>
+          <a class="cat" href="#shop">
+            <img src="assets/images/category-lighting.jpg" alt="Globe lamp on a bedside table">
+            <span>LIGHTING <svg class="arr"><use href="#ar"/></svg></span>
+          </a>
+          <a class="cat" href="#shop">
+            <img src="assets/images/category-decor.jpg" alt="Vases and mirror on a console">
+            <span>DECOR <svg class="arr"><use href="#ar"/></svg></span>
+          </a>
+          <a class="cat" href="#shop">
+            <img src="assets/images/category-textiles.jpg" alt="Rolls of leather">
+            <span>TEXTILES <svg class="arr"><use href="#ar"/></svg></span>
+          </a>
+        </div>
+
+        <div class="center">
+          <a class="lnk" href="#shop">Browse All <svg class="arr"><use href="#ar"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== New arrivals ===================== -->
+    <section>
+      <div class="wrap sec-h sec-h--arrivals">
+        <h2>New Arrivals</h2>
+        <p class="sub">Recently discovered pieces for considered interiors.</p>
+
+        <div class="g4 g4--arrivals">
+          <div class="prod">
+            <img src="assets/images/product-luna-armchair.jpg" alt="Luna Armchair">
+            <h3>Luna Armchair</h3>
+            <p class="c">Furniture</p>
+            <p class="p">₹2,899</p>
+            <a class="lnk" href="#">View Product <svg class="arr"><use href="#ar"/></svg></a>
+          </div>
+          <div class="prod">
+            <img src="assets/images/product-table-lamp.jpg" alt="Table Lamp">
+            <h3>Table Lamp</h3>
+            <p class="c">Lighting</p>
+            <p class="p">₹1,200</p>
+            <a class="lnk" href="#">View Product <svg class="arr"><use href="#ar"/></svg></a>
+          </div>
+          <div class="prod">
+            <img src="assets/images/product-terra-vase.jpg" alt="Terra Vase">
+            <h3>Terra Vase</h3>
+            <p class="c">Decor</p>
+            <p class="p">₹3,199</p>
+            <a class="lnk" href="#">View Product <svg class="arr"><use href="#ar"/></svg></a>
+          </div>
+          <div class="prod">
+            <img src="assets/images/product-coffee-table.jpg" alt="Coffee Table">
+            <h3>Coffee Table</h3>
+            <p class="c">Furniture</p>
+            <p class="p">₹4,899</p>
+            <a class="lnk" href="#">View Product <svg class="arr"><use href="#ar"/></svg></a>
+          </div>
+        </div>
+
+        <div class="center center--arrivals">
+          <a class="lnk" href="#shop">View All Pieces <svg class="arr"><use href="#ar"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== About ===================== -->
+    <section id="about">
+      <div class="wrap">
+        <div class="about">
+          <div class="img">
+            <div class="img-in"><img src="assets/images/about-living-room.jpg" alt="Living room with a timber beam ceiling"></div>
+          </div>
+          <div>
+            <h2>About Us</h2>
+            <p>AUREN Studio creates considered interiors where architecture, material, light, and everyday life come together. We approach every project individually, balancing timeless design with the personality of our clients.</p>
+            <p>We believe every space should tell a story, evoke emotion, and make everyday living feel extraordinary.</p>
+            <a class="lnk" href="#process">Discover AUREN <svg class="arr"><use href="#ar"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Services ===================== -->
+    <section id="services">
+      <div class="wrap sec-h sec-h--services">
+        <h2>Our Services</h2>
+        <p class="sub">From the first sketch to the final detail, every element is considered.</p>
+
+        <div class="g4 g4--services">
+          <div class="svc">
+            <img src="assets/images/service-interior-design.jpg" alt="Living room">
+            <span>01 INTERIOR DESIGN</span>
+          </div>
+          <div class="svc">
+            <img src="assets/images/service-space-planning.jpg" alt="3D floor plan">
+            <span>02 SPACE PLANNING</span>
+          </div>
+          <div class="svc">
+            <img src="assets/images/service-material-finish.jpg" alt="Material samples">
+            <span>03 MATERIAL &amp; FINISH</span>
+          </div>
+          <div class="svc">
+            <img src="assets/images/service-furniture-styling.jpg" alt="Leather armchair against a green wall">
+            <span>04 FURNITURE &amp; STYLING</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Design process ===================== -->
+    <section id="process">
+      <div class="wrap sec-h sec-h--process">
+        <h2>Our Design Process</h2>
+        <p class="sub">A considered process for creating spaces that feel effortless.</p>
+
+        <div class="proc">
+          <div class="im"><img src="assets/images/process-discover.jpg" alt=""></div>
+          <div>
+            <div class="n">01</div>
+            <h3>Discover</h3>
+            <p>We begin by understanding you, your lifestyle, your needs, and the character of your space. Through conversations, site visits, and careful observation, we uncover what matters most to you and establish the foundation for the design.</p>
+          </div>
+        </div>
+
+        <div class="proc r">
+          <div>
+            <div class="n">02</div>
+            <h3>Define</h3>
+            <p>With a clear understanding of your vision, we develop the design direction and establish the language of the space. From spatial planning and mood to materials, colours, and textures, every element begins to take shape with intention.</p>
+          </div>
+          <div class="im"><img src="assets/images/process-define.jpg" alt=""></div>
+        </div>
+
+        <div class="proc">
+          <div class="im"><img src="assets/images/process-design.jpg" alt=""></div>
+          <div>
+            <div class="n">03</div>
+            <h3>Design</h3>
+            <p>We transform the concept into a considered interior, refining layouts, furniture, lighting, finishes, and architectural details. Every decision is carefully balanced to create a space that is both visually refined and beautifully functional.</p>
+          </div>
+        </div>
+
+        <div class="proc r">
+          <div>
+            <div class="n">04</div>
+            <h3>Deliver</h3>
+            <p>Once the design is resolved, we bring every element together with precision and care. From material selections and custom details to coordination and execution, we work to ensure the original vision is carried through seamlessly.</p>
+          </div>
+          <div class="im"><img src="assets/images/process-deliver.jpg" alt=""></div>
+        </div>
+
+        <div class="proc">
+          <div class="im"><img src="assets/images/process-reveal.jpg" alt=""></div>
+          <div>
+            <div class="n">05</div>
+            <h3>Reveal</h3>
+            <p>The final stage is where the design becomes a lived experience. Every considered detail comes together to create a space that feels distinctly yours — personal, welcoming, and designed to last.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Testimonials ===================== -->
+    <section>
+      <div class="wrap sec-h sec-h--testimonials">
+        <h2>Client Testimonial</h2>
+        <p class="sub sub--narrow">AUREN understood not only how we wanted our home to look, but how we wanted it to feel.</p>
+
+        <div class="t3">
+          <div class="tc">
+            <img src="assets/images/testimonial-sarah-chen.jpg" alt="">
+            <div class="ov"></div>
+            <q>"AUREN Studio transformed our house into a beautiful, warm, and functional home. Every detail feels thoughtfully designed."</q>
+            <div class="who">
+              <div class="stars" aria-label="5 stars">
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+              </div>
+              <b>Sarah Chen</b>
+              <small>Private Client · Luxury Apartment</small>
+            </div>
+          </div>
+
+          <div class="tc">
+            <img src="assets/images/testimonial-rohan-mehta.jpg" alt="">
+            <div class="ov"></div>
+            <q>"Beautiful designs, premium materials, and exceptional attention to detail. The entire experience was seamless."</q>
+            <div class="who">
+              <div class="stars" aria-label="4 stars">
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+              </div>
+              <b>Rohan Mehta</b>
+              <small>Founder · Commercial Project</small>
+            </div>
+          </div>
+
+          <div class="tc">
+            <img src="assets/images/testimonial-priya-kapoor.jpg" alt="">
+            <div class="ov"></div>
+            <q>"They perfectly balanced aesthetics and functionality. Our workspace now feels modern, elegant, and inspiring."</q>
+            <div class="who">
+              <div class="stars" aria-label="4 stars">
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+                <svg fill="#FFD95A"><use href="#st"/></svg>
+              </div>
+              <b>Priya Kapoor</b>
+              <small>CEO, Series B fintech startup</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer id="contact" class="cta">
+    <h2>Make room for inspiration.<br>Spaces worth coming home to.</h2>
+
+    <form id="contact-form">
+      <input type="email" id="contact-email" placeholder="Your Email" aria-label="Your email" required>
+      <button class="btn" type="submit">Get in Touch</button>
+    </form>
+
+    <div class="fp">
+      <span class="vl"></span>
+
+      <div class="soc">
+        <svg viewBox="0 0 24 24" aria-label="Instagram"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm5 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"/></svg>
+        <svg viewBox="0 0 24 24" aria-label="LinkedIn"><path d="M4 2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2zm1.5 7.5V19h3V9.5zm1.5-4.6a1.7 1.7 0 100 3.4 1.7 1.7 0 000-3.4zM10.5 9.5V19h3v-5c0-1.4.6-2.2 1.800-2.200S16.500 12.600 16.500 14v5h3v-5.700c0-2.600-1.400-4-3.400-4-1.200 0-2.100.6-2.600 1.400V9.500z"/></svg>
+        <svg viewBox="0 0 24 24" aria-label="Twitter"><path d="M22 5.800c-.7.300-1.500.5-2.300.6.800-.5 1.500-1.300 1.800-2.200-.8.500-1.700.8-2.600 1a4.100 4.100 0 00-7 3.700C8.500 8.700 5.400 7 3.300 4.500a4.100 4.100 0 001.300 5.500c-.7 0-1.300-.2-1.900-.5 0 2 1.400 3.700 3.300 4.100-.6.200-1.200.2-1.800.1.500 1.600 2 2.800 3.800 2.800A8.200 8.200 0 012 18.200 11.600 11.600 0 008.300 20c7.500 0 11.700-6.300 11.700-11.700v-.5c.8-.6 1.500-1.300 2-2z"/></svg>
+      </div>
+
+      <div class="ic">
+        <div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.500L2 11.500h3V21h5.500v-6h3v6H19v-9.500h3z"/></svg>
+          AUREN<br>Interiors
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h13a1 1 0 011 1v8a1 1 0 01-1 1H8l-4 3.500V4a1 1 0 011-1zm15 6h3a1 1 0 011 1v11l-3.500-3H12a1 1 0 01-1-1v-2h8z"/></svg>
+          Design<br>Consultation
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6a1 1 0 011 1v2h4a2 2 0 012 2v4H2V8a2 2 0 012-2h4V4a1 1 0 011-1zm1 2v1h4V5zM2 14h8v1.500h4V14h8v5a2 2 0 01-2 2H4a2 2 0 01-2-2z"/></svg>
+          Turnkey<br>Execution
+        </div>
+      </div>
+
+      <div class="col col--explore">
+        <h4>EXPLORE</h4>
+        <a href="#">Residential Interiors</a>
+        <a href="#">Commercial Spaces</a>
+        <a href="#">Our Projects</a>
+        <a href="#process">Design Process</a>
+        <a href="#about">About the Studio</a>
+      </div>
+
+      <div class="col col--services">
+        <h4>SERVICES</h4>
+        <a href="#services">Interior Design</a>
+        <a href="#services">Space Planning</a>
+        <a href="#services">Furniture &amp; Styling</a>
+        <a href="#">Renovation</a>
+        <a href="#">Custom Interiors</a>
+      </div>
+
+      <div class="col col--contact">
+        <h4>CONTACT</h4>
+        <a class="ct" href="tel:+91752757744"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.600 10.800a15 15 0 006.600 6.600l2.200-2.200a1 1 0 011-.25 11.400 11.400 0 003.600.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.500a1 1 0 011 1c0 1.300.2 2.500.57 3.600a1 1 0 01-.25 1z"/></svg>+91 752757744</a>
+        <a class="ct" href="mailto:hello@aurenstudio.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h20v14H2zm2 2v.5l8 5 8-5V7zm0 3l8 5 8-5v7H4z"/></svg>hello@aurenstudio.com</a>
+        <a class="ct" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7zm0 4.500a2.500 2.500 0 100 5 2.500 2.500 0 000-5z"/></svg>Delhi, India</a>
+      </div>
+
+      <div class="fl"></div>
+      <div class="cp">
+        <span>AUREN&nbsp; studio Interio . &nbsp;Delhi . India</span>
+        <span>2026 - All rights Reserved</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Libraries (CDN) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <!-- Site scripts (order matters: modules first, main.js last) -->
+  <script defer src="js/smooth-scroll.js"></script>
+  <script defer src="js/menu.js"></script>
+  <script defer src="js/navigation.js"></script>
+  <script defer src="js/reveal.js"></script>
+  <script defer src="js/contact-form.js"></script>
+  <script defer src="js/hero.js"></script>
+  <script defer src="js/scroll-effects.js"></script>
+  <script defer src="js/pointer-effects.js"></script>
+  <script defer src="js/intro.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/motion.js"></script>
+  <script defer src="js/lens.js"></script>
+  <script defer src="js/process-scroll.js"></script>
+</body>
+</html>
